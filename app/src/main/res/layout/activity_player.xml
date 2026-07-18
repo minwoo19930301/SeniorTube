@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:keepScreenOn="true">
+
+    <!-- No touch shield: the embedded player surface is never covered.
+         Runaway protection is navigation-level instead — every attempt to
+         leave the bundled page (ad landing pages, intent:// app installs,
+         popups) is refused by the WebViewClient, so a stray tap can never
+         take the viewer away from the playlist. -->
+    <WebView
+        android:id="@+id/player_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/ad_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="24dp"
+        android:background="#CC000000"
+        android:paddingStart="24dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="12dp"
+        android:text="@string/ad_notice"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/unavailable_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/unavailable"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:visibility="gone" />
+
+</FrameLayout>

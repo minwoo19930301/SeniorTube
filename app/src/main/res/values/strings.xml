@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SeniorTube</string>
+    <string name="ad_notice">An ad may be playing. Please wait.</string>
+    <string name="unavailable">Videos are not available right now.</string>
+</resources>

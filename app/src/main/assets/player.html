@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<style>
+  html, body { margin: 0; padding: 0; background: #000; width: 100%; height: 100%; overflow: hidden; }
+  #player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div id="player"></div>
+<script>
+  // Either a public YouTube playlist ID (preferred: editable on YouTube
+  // without an app update, shuffled by the player itself) or a bundled,
+  // pre-shuffled list of video IDs.
+  var source = JSON.parse(SeniorTube.getSourceJson());
+  var playlist = source.videos || [];
+  var index = 0;
+  var player = null;
+  var consecutiveFailures = 0;
+
+  var tag = document.createElement("script");
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.body.appendChild(tag);
+
+  function onYouTubeIframeAPIReady() {
+    var playerVars = {
+      autoplay: 1,
+      controls: 0,
+      disablekb: 1,
+      fs: 0,
+      rel: 0,
+      iv_load_policy: 3,
+      playsinline: 1
+    };
+    var config = { width: "100%", height: "100%", playerVars: playerVars, events: {
+      onReady: onReady,
+      onStateChange: onStateChange,
+      onError: onPlayerError
+    } };
+    if (source.playlistId) {
+      playerVars.listType = "playlist";
+      playerVars.list = source.playlistId;
+    } else {
+      config.videoId = playlist[index];
+    }
+    player = new YT.Player("player", config);
+  }
+
+  function onReady(e) {
+    if (source.playlistId) {
+      e.target.setShuffle(true);
+      e.target.setLoop(true);
+    }
+    e.target.playVideo();
+  }
+
+  function onStateChange(e) {
+    if (e.data === YT.PlayerState.PLAYING) {
+      consecutiveFailures = 0;
+    } else if (e.data === YT.PlayerState.ENDED) {
+      nextVideo();
+    }
+  }
+
+  // 101/150 = embedding disabled by the owner; skip silently per AGENTS.md.
+  function onPlayerError(e) {
+    consecutiveFailures += 1;
+    if (!source.playlistId && consecutiveFailures >= playlist.length) {
+      SeniorTube.onAllVideosFailed();
+      return;
+    }
+    if (source.playlistId && consecutiveFailures >= 20) {
+      SeniorTube.onAllVideosFailed();
+      return;
+    }
+    nextVideo();
+  }
+
+  function nextVideo() {
+    SeniorTube.onVideoChanged();
+    if (source.playlistId) {
+      player.nextVideo();
+    } else {
+      index = (index + 1) % playlist.length;
+      player.loadVideoById(playlist[index]);
+    }
+  }
+
+  // Content progress is the ad signal: during an ad the content clock stays
+  // near zero, so the native side keeps its passive "ad may be playing"
+  // notice up until real progress is reported. Nothing is clicked or skipped.
+  setInterval(function () {
+    if (player && player.getCurrentTime) {
+      try { SeniorTube.onContentProgress(player.getCurrentTime()); } catch (err) {}
+    }
+  }, 1000);
+</script>
+</body>
+</html>
