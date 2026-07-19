@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">シニア向け動画</string>
+    <string name="ad_notice">広告が再生されている場合があります。しばらくお待ちください。</string>
+    <string name="unavailable">現在、動画を再生できません。</string>
+</resources>

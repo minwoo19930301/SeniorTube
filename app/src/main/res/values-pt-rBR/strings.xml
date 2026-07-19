@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vídeos para Idosos</string>
+    <string name="ad_notice">Um anúncio pode estar passando. Aguarde, por favor.</string>
+    <string name="unavailable">Os vídeos não estão disponíveis no momento.</string>
+</resources>

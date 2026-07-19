@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">बुज़ुर्गों के लिए वीडियो</string>
+    <string name="ad_notice">विज्ञापन चल रहा हो सकता है। कृपया प्रतीक्षा करें।</string>
+    <string name="unavailable">अभी वीडियो उपलब्ध नहीं हैं।</string>
+</resources>

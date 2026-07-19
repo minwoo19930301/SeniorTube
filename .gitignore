@@ -4,3 +4,7 @@ local.properties
 *.iml
 .idea/
 .DS_Store
+
+# Release signing — NEVER commit; back up privately
+seniortube-release.keystore
+key.properties

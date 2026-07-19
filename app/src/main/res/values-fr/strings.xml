@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vidéos Seniors</string>
+    <string name="ad_notice">Une publicité est peut-être en cours. Veuillez patienter.</string>
+    <string name="unavailable">Les vidéos sont indisponibles pour le moment.</string>
+</resources>
