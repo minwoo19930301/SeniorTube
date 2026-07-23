@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
+  <style>
+    html, body, #player {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="player"></div>
+  <script>
+    const source = __SOURCE_JSON__;
+    const applicationOrigin = __APP_ORIGIN_JSON__;
+    const playlist = source.videos || [];
+
+    let player = null;
+    let index = 0;
+    let consecutiveFailures = 0;
+    let failedPermanently = false;
+    let apiTimeout = null;
+    let playerReadyTimeout = null;
+
+    function post(event, details) {
+      try {
+        window.webkit.messageHandlers.SeniorTube.postMessage(
+          Object.assign({ event: event }, details || {})
+        );
+      } catch (_) {
+        // The native bridge can disappear while the app enters background.
+      }
+    }
+
+    window.SeniorTubeStop = function () {
+      if (player && player.stopVideo) {
+        player.stopVideo();
+      }
+    };
+
+    function loadYouTubeAPI() {
+      if (!source.playlistId && playlist.length === 0) {
+        post("allVideosFailed");
+        return;
+      }
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      tag.onerror = reportUnavailable;
+      document.body.appendChild(tag);
+      apiTimeout = setTimeout(reportUnavailable, 20000);
+    }
+
+    function onYouTubeIframeAPIReady() {
+      clearTimeout(apiTimeout);
+      const playerVars = {
+        autoplay: 1,
+        controls: 0,
+        disablekb: 1,
+        fs: 0,
+        iv_load_policy: 3,
+        playsinline: 1,
+        rel: 0,
+        origin: applicationOrigin
+      };
+
+      const configuration = {
+        width: "100%",
+        height: "100%",
+        playerVars: playerVars,
+        events: {
+          onReady: onReady,
+          onStateChange: onStateChange,
+          onError: onPlayerError
+        }
+      };
+
+      if (source.playlistId) {
+        playerVars.listType = "playlist";
+        playerVars.list = source.playlistId;
+      } else {
+        configuration.videoId = playlist[index];
+      }
+
+      player = new YT.Player("player", configuration);
+      playerReadyTimeout = setTimeout(reportUnavailable, 20000);
+    }
+
+    function onReady(event) {
+      clearTimeout(playerReadyTimeout);
+      if (source.playlistId) {
+        event.target.setShuffle(true);
+        event.target.setLoop(true);
+      }
+      event.target.playVideo();
+    }
+
+    function onStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        consecutiveFailures = 0;
+      } else if (event.data === YT.PlayerState.ENDED) {
+        nextVideo();
+      }
+    }
+
+    function onPlayerError() {
+      consecutiveFailures += 1;
+      const failureLimit = source.playlistId
+        ? 20
+        : Math.max(playlist.length, 1);
+
+      if (consecutiveFailures >= failureLimit) {
+        post("allVideosFailed");
+        return;
+      }
+      nextVideo();
+    }
+
+    function reportUnavailable() {
+      if (failedPermanently) {
+        return;
+      }
+      failedPermanently = true;
+      clearTimeout(apiTimeout);
+      clearTimeout(playerReadyTimeout);
+      post("allVideosFailed");
+    }
+
+    function nextVideo() {
+      if (!player) {
+        return;
+      }
+      if (source.playlistId) {
+        player.nextVideo();
+      } else {
+        index = (index + 1) % playlist.length;
+        player.loadVideoById(playlist[index]);
+      }
+    }
+
+    loadYouTubeAPI();
+  </script>
+</body>
+</html>

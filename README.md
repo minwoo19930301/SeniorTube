@@ -1,28 +1,24 @@
 # SeniorTube
 
-A single-purpose Android app for elderly viewers: launching it goes straight
-to a fullscreen, auto-playing YouTube playlist matched to the device country.
-No menu, no buttons, no accounts, no data collection by the app.
+A single-purpose Android and iPhone app for elderly viewers. Launching it
+goes straight to a fullscreen, auto-playing YouTube playlist matched to the
+device country. There are no menus, accounts, or setup screens, and the app
+itself collects no data.
 
-Positioning: **phishing and scam protection for seniors**. Ads play normally,
-but no tap can leave the player, so a mistaken touch never reaches a scam
-page or an app-install funnel. Store-facing name is localized per country
-("Senior Videos", "어르신 영상", "シニア向け動画", …) — see
-`app/src/main/res/values-*/strings.xml`; "SeniorTube" is only the internal
-project name.
+Ads play normally and the official YouTube player is never covered by a
+touch shield. Leaving the app ends the current session; returning starts a
+fresh one. On iPhone, a user-selected YouTube or ad link opens through the
+YouTube app or the system browser, as required by YouTube's player policy.
 
-Playlists are public YouTube playlists maintained by the developer; editing
-them on YouTube updates every device with no app update
-(`app/src/main/assets/playlists/playlists.json` maps country → playlist ID).
+The store-facing name is localized per country ("Senior Videos", "어르신
+영상", "シニア向け動画", …); "SeniorTube" is only the internal project
+name.
 
-Runaway protection is navigation-level, not overlay-level: the embedded
-player is never covered, ads play normally, but every attempt to leave the
-bundled page (ad landing pages, `intent://` / `market://` install links,
-popups, external browsers) is refused, so a stray tap can never carry the
-viewer away from the playlist. Leaving the app in any way ends the session;
-the next launch starts fresh.
+Both apps share one source of truth for public playlists:
+`app/src/main/assets/playlists/playlists.json`. Editing a maintained public
+playlist on YouTube updates every device without an app update.
 
-## Build and install
+## Android: build and install
 
 JDK 17 + Android command-line tools (no Android Studio needed):
 
@@ -32,7 +28,23 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 adb shell am start -n org.seniortube.app/.PlayerActivity
 ```
 
-## Release (Play Store)
+## iPhone: open and run
+
+The native UIKit/WKWebView project is committed at
+`ios/SeniorTube.xcodeproj`; Expo and CocoaPods are not required.
+
+1. Install full Xcode and an iOS Simulator runtime.
+2. Open `ios/SeniorTube.xcodeproj`.
+3. Choose the **SeniorTube** scheme and an iPhone simulator, then Run.
+
+For a physical iPhone or App Store archive, select your Apple Developer team
+under **Signing & Capabilities** and register the bundle ID
+`org.seniortube.app` (or replace it with one owned by your team).
+
+More details and verification commands are in
+[`ios/README.md`](ios/README.md).
+
+## Android release (Play Store)
 
 ```bash
 ./gradlew :app:bundleRelease   # signed AAB → app/build/outputs/bundle/release/
@@ -46,8 +58,16 @@ Store documents:
 
 - [docs/PRIVACY_POLICY.md](docs/PRIVACY_POLICY.md) — bilingual (EN/KR)
   privacy policy; fill `[CONTACT_EMAIL]` and `[EFFECTIVE_DATE]`, host it
-  publicly, and link it in Play Console.
-- [docs/STORE_LISTING.md](docs/STORE_LISTING.md) — per-country titles,
-  short/full descriptions (EN/KR), reviewer notes, Data safety form
-  cheat-sheet, content-rating guidance.
+  publicly, and link it in each store.
+- [docs/STORE_LISTING.md](docs/STORE_LISTING.md) — Play Store titles,
+  descriptions, reviewer notes, and Data safety guidance.
 - `store-assets/icon-512.png` — Play Console listing icon.
+
+## iPhone release (App Store)
+
+Archive the **SeniorTube** scheme in Xcode after choosing your signing team.
+The iPhone target includes localized display names, a non-alpha 1024px App
+Store icon, landscape-only presentation, and no sensitive permission
+requests. Follow
+[`docs/APP_STORE_SUBMISSION.md`](docs/APP_STORE_SUBMISSION.md) before
+uploading a build.

@@ -1,0 +1,51 @@
+name: SeniorTube
+
+options:
+  bundleIdPrefix: org.seniortube
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: "15.0"
+  developmentLanguage: en
+
+settings:
+  base:
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 0.1.0
+    SWIFT_VERSION: 5.0
+
+targets:
+  SeniorTube:
+    type: application
+    platform: iOS
+    productName: SeniorVideos
+    sources:
+      - path: SeniorTube
+        excludes:
+          - Info.plist
+          - Resources
+      - path: SeniorTube/Resources
+        buildPhase: resources
+      - path: ../app/src/main/assets/playlists/playlists.json
+        buildPhase: resources
+    settings:
+      base:
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: SeniorTube/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: org.seniortube.app
+        PRODUCT_NAME: SeniorVideos
+        SUPPORTS_MACCATALYST: NO
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        TARGETED_DEVICE_FAMILY: "1"
+
+schemes:
+  SeniorTube:
+    build:
+      targets:
+        SeniorTube: all
+    run:
+      config: Debug
+    archive:
+      config: Release

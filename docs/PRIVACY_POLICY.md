@@ -1,12 +1,12 @@
 # Privacy Policy / 개인정보처리방침
 
-**App:** SeniorTube (package: `org.seniortube.app`)
+**App:** SeniorTube (Android package / iOS bundle: `org.seniortube.app`)
 **Effective date:** [EFFECTIVE_DATE]
 **Contact:** [CONTACT_EMAIL]
 
-This app appears in each country's Google Play store under a localized plain name (for example, "노인용 영상" in Korea, or "SeniorYT" in some regions). All of these names refer to the same app, and this one policy covers all of them.
+This app appears in Google Play and the Apple App Store under localized plain names. All platform and language versions refer to the same app, and this policy covers all of them.
 
-이 앱은 국가별 Google Play 스토어에서 현지어 이름(예: 한국 "노인용 영상", 일부 지역 "SeniorYT")으로 표시됩니다. 모두 같은 앱이며, 이 방침 하나가 전부에 적용됩니다.
+이 앱은 Google Play와 Apple App Store에서 국가·언어별 이름으로 표시됩니다. 플랫폼과 표시 이름이 달라도 모두 같은 앱이며, 이 방침 하나가 전부에 적용됩니다.
 
 ---
 
@@ -14,9 +14,9 @@ This app appears in each country's Google Play store under a localized plain nam
 
 ## What this app is
 
-SeniorTube is a simple video player made for elderly users. When you open it, it immediately plays a public YouTube playlist chosen for your device's country, in fullscreen. There are no accounts, no menus, and no buttons to press.
+SeniorTube is a simple video player made for elderly users. When you open it, it plays a public YouTube playlist chosen for your device's country in fullscreen. There are no accounts, menus, or setup screens. On an iPhone that blocks audible autoplay, one tap may be required to start the first video.
 
-Its main purpose is **protection from phishing and scams**. Ads inside the videos play normally — the app does not block or skip them — but the app refuses every attempt to leave the video player. Tapping an ad, a link, a popup, or an app-install prompt does nothing. A mistaken tap can never carry the viewer to a scam page, a phishing site, or an app-install funnel. To leave, you simply press back or lock the screen.
+Ads inside the videos play normally; the app does not block, cover, click, or skip them. The iPhone version keeps YouTube's links functional: when the viewer chooses an external link, iOS opens it in the YouTube app or the system browser and the current SeniorTube session ends. Returning to SeniorTube starts a new session.
 
 ## The short version
 
@@ -26,7 +26,7 @@ Its main purpose is **protection from phishing and scams**. Ads inside the video
 - Google/YouTube may process some data as a third party, under Google's own privacy policy.
 - Your device's country setting is read **on your device only**, to pick a playlist. The app never sends the setting itself anywhere — though YouTube can naturally see which country's playlist it is asked to play.
 - We do not sell or share any data, because we have none.
-- The app itself remembers nothing between sessions. Every launch starts fresh. (The embedded YouTube player may keep its own cookies on your device — see below.)
+- The app itself remembers nothing between sessions. Every launch starts fresh. The Android system WebView may keep YouTube cookies; the iPhone version uses a non-persistent web session.
 
 ## Data collected by the developer: none
 
@@ -38,7 +38,7 @@ The app has no way to identify you and no place to store information about you. 
 - device identifiers or advertising identifiers,
 - crash reports or analytics of any kind.
 
-There is no analytics library and no advertising SDK inside the app. The app requests only one Android permission: **INTERNET**, which it needs to load videos.
+There is no analytics library and no advertising SDK inside the app. Android requests only the **INTERNET** permission. The iPhone app requests no sensitive device permissions.
 
 ## The only network connection: YouTube's embedded player
 
@@ -69,7 +69,7 @@ We do not sell data. We do not share data with anyone. We could not even if we w
 
 The app itself keeps no state. It stores no history, no settings, no profiles, and no identifiers. Closing the app and opening it again starts the playlist fresh, as if for the first time.
 
-One exception sits outside our code: the embedded YouTube player runs in the Android system WebView, which may keep YouTube's own cookies or cached files on your device between sessions. That storage belongs to Google/YouTube's player and is covered by the Google Privacy Policy above; the developer never reads or uses it. You can clear it at any time in Android settings (Apps → this app → Storage → Clear data).
+One exception sits outside our code: the Android system WebView may keep YouTube's own cookies or cached files between sessions. That storage belongs to Google/YouTube's player and is covered by the Google Privacy Policy above; the developer never reads or uses it. It can be cleared in Android settings (Apps → this app → Storage → Clear data). The iPhone version uses a non-persistent `WKWebView` data store, so its web session is discarded when the player session ends.
 
 ## Children
 
@@ -88,9 +88,17 @@ This matches what we declare in the Google Play "Data safety" form:
 | Can users request data deletion? | There is nothing to delete — no data is collected by the developer |
 | Third-party notice | The app embeds YouTube's player; Google/YouTube may process data under the [Google Privacy Policy](https://policies.google.com/privacy) |
 
+## Apple App Store privacy notice
+
+Apple treats data sent through a fixed in-app web view as app privacy
+information even when the developer does not receive that data. The App
+Store privacy label must therefore reflect Google/YouTube's current data
+practices for the embedded player. The developer still receives, stores, and
+sells none of that data.
+
 ## Changes to this policy
 
-If we ever change this policy, we will post the updated version at this same page and change the effective date at the top. If a change is significant (for example, if a future version of the app ever collected any data — which we do not plan), we will also say so clearly in the app's update notes on Google Play. Because the app has no accounts, we cannot notify you personally, so this page is the place to check.
+If we ever change this policy, we will post the updated version at this same page and change the effective date at the top. Significant changes will also be stated in the app's update notes in Google Play and the Apple App Store. Because the app has no accounts, we cannot notify you personally, so this page is the place to check.
 
 ## Contact
 
@@ -102,9 +110,9 @@ Questions about this policy or the app: **[CONTACT_EMAIL]**
 
 ## 이 앱은 무엇인가요
 
-SeniorTube(한국 스토어 이름: **노인용 영상**)는 어르신을 위한 아주 단순한 동영상 재생 앱입니다. 앱을 열면 기기의 국가에 맞는 공개 YouTube 재생목록이 곧바로 전체 화면으로 재생됩니다. 계정도, 메뉴도, 눌러야 할 버튼도 없습니다.
+SeniorTube(한국 스토어 이름: **어르신 영상**)는 어르신을 위한 아주 단순한 동영상 재생 앱입니다. 앱을 열면 기기의 국가에 맞는 공개 YouTube 재생목록이 전체 화면으로 재생됩니다. 계정, 메뉴, 설정 화면은 없습니다. iPhone이 소리 있는 자동재생을 막는 경우에만 첫 영상 시작을 위해 화면을 한 번 눌러야 할 수 있습니다.
 
-이 앱의 핵심 목적은 **피싱·사기 예방**입니다. 영상 속 광고는 그대로 정상 재생되며 앱이 광고를 막거나 건너뛰지 않습니다. 다만 재생 화면 밖으로 나가려는 모든 시도(광고 랜딩 페이지, 링크, 팝업, 앱 설치 유도)는 앱이 전부 차단합니다. 실수로 화면을 눌러도 사기 페이지나 피싱 사이트, 앱 설치 화면으로 절대 넘어가지 않습니다. 앱을 끝내려면 뒤로 가기를 누르거나 화면을 잠그면 됩니다.
+영상 속 광고는 정상적으로 재생되며 앱이 광고를 차단·가림·클릭·건너뛰기 하지 않습니다. iPhone에서는 YouTube 링크도 정상 동작합니다. 이용자가 외부 링크를 선택하면 YouTube 앱 또는 시스템 브라우저로 열리고 SeniorTube의 현재 재생 세션은 끝납니다. 앱으로 돌아오면 새 세션으로 다시 시작합니다.
 
 ## 요약
 
@@ -114,7 +122,7 @@ SeniorTube(한국 스토어 이름: **노인용 영상**)는 어르신을 위한
 - Google/YouTube는 제3자로서 자체 개인정보처리방침에 따라 일부 데이터를 처리할 수 있습니다.
 - 기기의 국가 설정은 재생목록 선택을 위해 **기기 안에서만** 읽으며, 앱이 그 설정값 자체를 외부로 전송하는 일은 없습니다. 다만 어느 나라 재생목록을 여는지는 YouTube 쪽에서 자연히 알 수 있습니다.
 - 데이터를 판매하거나 공유하지 않습니다. 애초에 가진 데이터가 없습니다.
-- 앱 자체는 아무것도 기억하지 않습니다. 켤 때마다 처음처럼 새로 시작합니다. (내장 YouTube 플레이어는 자체 쿠키를 기기에 남길 수 있습니다 — 아래 참고.)
+- 앱 자체는 아무것도 기억하지 않습니다. 켤 때마다 처음처럼 새로 시작합니다. Android 웹뷰는 YouTube 쿠키를 남길 수 있고, iPhone판은 비영구 웹 세션을 사용합니다.
 
 ## 개발자가 수집하는 데이터: 없음
 
@@ -126,7 +134,7 @@ SeniorTube(한국 스토어 이름: **노인용 영상**)는 어르신을 위한
 - 기기 식별자, 광고 식별자
 - 오류 보고서나 각종 분석 데이터
 
-앱 안에 분석 라이브러리나 광고 SDK가 전혀 들어 있지 않습니다. 앱이 요청하는 안드로이드 권한은 영상 재생에 필요한 **인터넷(INTERNET)** 하나뿐입니다.
+앱 안에 분석 라이브러리나 광고 SDK가 전혀 들어 있지 않습니다. Android가 요청하는 권한은 영상 재생에 필요한 **인터넷(INTERNET)** 하나뿐이며, iPhone판은 민감한 기기 권한을 요청하지 않습니다.
 
 ## 유일한 인터넷 연결: YouTube 내장 플레이어
 
@@ -157,7 +165,7 @@ SeniorTube(한국 스토어 이름: **노인용 영상**)는 어르신을 위한
 
 앱 자체는 어떤 상태도 보관하지 않습니다. 시청 기록, 설정, 프로필, 식별자를 저장하지 않으며, 앱을 껐다 다시 켜면 재생목록이 처음처럼 새로 시작됩니다.
 
-한 가지 예외는 개발자 코드 밖에 있습니다. 내장 YouTube 플레이어는 안드로이드 시스템 웹뷰 안에서 실행되는데, 이 웹뷰가 YouTube 자체 쿠키나 캐시 파일을 세션 사이에 기기에 남길 수 있습니다. 이는 Google/YouTube 플레이어의 저장 공간이며(위의 Google 개인정보처리방침 적용), 개발자는 이를 읽거나 사용하지 않습니다. 안드로이드 설정(애플리케이션 → 이 앱 → 저장공간 → 데이터 삭제)에서 언제든지 지울 수 있습니다.
+한 가지 예외는 개발자 코드 밖에 있습니다. Android 시스템 웹뷰는 YouTube 자체 쿠키나 캐시 파일을 세션 사이에 남길 수 있습니다. 이는 Google/YouTube 플레이어의 저장 공간이며(위의 Google 개인정보처리방침 적용), 개발자는 이를 읽거나 사용하지 않습니다. Android 설정(애플리케이션 → 이 앱 → 저장공간 → 데이터 삭제)에서 지울 수 있습니다. iPhone판은 비영구 `WKWebView` 데이터 저장소를 사용하므로 재생 세션이 끝날 때 해당 웹 세션도 폐기됩니다.
 
 ## 아동 관련 안내
 
@@ -176,9 +184,17 @@ Google Play "데이터 보안" 양식에 신고한 내용과 동일합니다.
 | 데이터 삭제 요청 가능 여부 | 삭제할 데이터가 없습니다 — 개발자가 수집하는 데이터가 없기 때문입니다 |
 | 제3자 고지 | 앱은 YouTube 플레이어를 내장하며, Google/YouTube는 [Google 개인정보처리방침](https://policies.google.com/privacy)에 따라 데이터를 처리할 수 있습니다 |
 
+## Apple App Store 개인정보 표시
+
+Apple은 고정된 앱 내 웹뷰를 통해 전송되는 정보도 개발자가 직접
+받는지와 관계없이 App Store 개인정보 표시 대상에 포함합니다.
+따라서 App Store의 개인정보 답변은 YouTube 내장 플레이어의 최신
+데이터 처리 내용을 반영해야 합니다. 개발자는 해당 데이터를
+전달받거나 저장·판매하지 않습니다.
+
 ## 방침 변경 시 안내
 
-이 방침이 변경되면 같은 페이지에 새 버전을 게시하고 상단의 시행일을 갱신합니다. 중요한 변경이 있는 경우(예: 향후 버전에서 어떤 데이터라도 수집하게 되는 경우 — 현재 그럴 계획은 없습니다) Google Play의 앱 업데이트 노트에도 분명히 알리겠습니다. 이 앱에는 계정이 없어 개별 연락이 불가능하므로, 이 페이지가 공식 확인 창구입니다.
+이 방침이 변경되면 같은 페이지에 새 버전을 게시하고 상단의 시행일을 갱신합니다. 중요한 변경은 Google Play와 Apple App Store 업데이트 노트에도 분명히 알리겠습니다. 이 앱에는 계정이 없어 개별 연락이 불가능하므로, 이 페이지가 공식 확인 창구입니다.
 
 ## 문의
 

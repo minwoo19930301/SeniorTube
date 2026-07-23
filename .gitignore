@@ -5,6 +5,14 @@ local.properties
 .idea/
 .DS_Store
 
+# Xcode local state and build output
+ios/build/
+ios/DerivedData/
+**/xcuserdata/
+*.xcuserstate
+*.mobileprovision
+*.p12
+
 # Release signing — NEVER commit; back up privately
 seniortube-release.keystore
 key.properties
