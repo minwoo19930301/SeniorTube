@@ -1,26 +1,25 @@
 # SeniorTube
 
-A single-purpose Android app for elderly viewers: launching it goes straight
-to a fullscreen, auto-playing YouTube playlist matched to the device country.
-No menu, no buttons, no accounts, no data collection by the app.
+An Android app that plays videos an older viewer wants to watch like a simple
+favorites list. On launch, it opens a fullscreen, auto-playing YouTube playlist
+maintained by the developer for the device country, repeats the playlist, and
+handles unavailable videos by moving on to the next available item. There is
+no menu, no account, and no data collection by the app.
 
-Positioning: **phishing and scam protection for seniors**. Ads play normally,
-but no tap can leave the player, so a mistaken touch never reaches a scam
-page or an app-install funnel. Store-facing name is localized per country
-("Senior Videos", "어르신 영상", "シニア向け動画", …) — see
-`app/src/main/res/values-*/strings.xml`; "SeniorTube" is only the internal
-project name.
+The store release is still being prepared. Store-facing names are localized per
+country ("Videos for Seniors", "어르신 영상", "シニア向け動画", …) — see
+`app/src/main/res/values-*/strings.xml`; "SeniorTube" is the internal project
+name.
 
 Playlists are public YouTube playlists maintained by the developer; editing
 them on YouTube updates every device with no app update
 (`app/src/main/assets/playlists/playlists.json` maps country → playlist ID).
 
-Runaway protection is navigation-level, not overlay-level: the embedded
-player is never covered, ads play normally, but every attempt to leave the
-bundled page (ad landing pages, `intent://` / `market://` install links,
-popups, external browsers) is refused, so a stray tap can never carry the
-viewer away from the playlist. Leaving the app in any way ends the session;
-the next launch starts fresh.
+To keep the viewing flow simple, navigation is restricted at the WebView layer:
+the embedded player is not covered and ads play normally, while attempts to
+leave the bundled player page (ad landing pages, `intent://` / `market://`
+install links, popups, and external browsers) are refused. Leaving the app in
+any way ends the session; the next launch starts fresh.
 
 ## Build and install
 
