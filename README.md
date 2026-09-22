@@ -1,11 +1,5 @@
 # SeniorTube
 
-<!-- PROJECT-PRESENTATION:START -->
-<a href="https://github.com/minwoo19930301/SeniorTube"><img src=".github/project-cover.svg" alt="SeniorTube" width="960"></a>
-
-[![QUICK START](https://img.shields.io/badge/QUICK%20START-374151?style=for-the-badge)](#build-and-install) [![SOURCE](https://img.shields.io/badge/SOURCE-444444?style=for-the-badge)](https://github.com/minwoo19930301/SeniorTube)
-<!-- PROJECT-PRESENTATION:END -->
-
 An Android app that plays videos an older viewer wants to watch like a simple
 favorites list. On launch, it opens a fullscreen, auto-playing YouTube playlist
 maintained by the developer for the device country, repeats the playlist, and
